@@ -6,7 +6,8 @@ import React, { useEffect, useState } from 'react'
 import { signIn, signOut, useSession, getProviders } from 'next-auth/react'
 
 const Navbar = () => {
-  const { data: session } = useSession()
+  // const { data: session } = useSession()
+  const session = true
 
   const [providers, setProviders] = useState()
   const [toggleDropdown, setToggleDropdown] = useState(false)
@@ -34,7 +35,7 @@ const Navbar = () => {
         <p className='logo_text'>Promptopia</p>
       </Link>
       <div className='sm:flex hidden'>
-        {session?.user ? (
+        {session ? (
           <div className='flex gap-3 md:gap-5'>
             <Link href='/create-prompt' className='black_btn'>
               Create Post
@@ -45,7 +46,7 @@ const Navbar = () => {
 
             <Link href='/profile'>
               <Image
-                src={session?.user.image}
+                src={''}
                 className='rounded-[15px]'
                 alt='profile pic'
                 width={37}
@@ -71,10 +72,11 @@ const Navbar = () => {
       </div>
       {/* mobile menu */}
       <div className='sm:hidden flex relative'>
-        {session?.user ? (
+        {session ? (
           <div className='flex cursor-pointer'>
             <Image
-              src={session?.user.image}
+              // src={session?.user.image}
+              src={''}
               className='rounded-[15px]'
               alt='profile pic'
               width={37}
