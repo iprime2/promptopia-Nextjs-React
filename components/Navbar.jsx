@@ -6,8 +6,8 @@ import React, { useEffect, useState } from 'react'
 import { signIn, signOut, useSession, getProviders } from 'next-auth/react'
 
 const Navbar = () => {
-  // const { data: session } = useSession()
-  const session = true
+  const { data: session } = useSession()
+  // const session = true
 
   const [providers, setProviders] = useState()
   const [toggleDropdown, setToggleDropdown] = useState(false)

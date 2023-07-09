@@ -14,14 +14,14 @@ const MyProfile = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      //   const res = await fetch(`/api/users/${session?.user.id}/posts`)
-      const res = await fetch(`/api/prompt`)
+      const res = await fetch(`/api/users/${session?.user.id}/posts`)
+      // const res = await fetch(`/api/prompt`)
       const data = await res.json()
 
       setPosts(data)
     }
 
-    // if (session?.user.id) fetchPosts()
+    if (session?.user.id) fetchPosts()
     fetchPosts()
   }, [])
 
