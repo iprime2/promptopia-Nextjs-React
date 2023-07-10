@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
@@ -10,6 +10,8 @@ import { useState } from 'react'
 const Form = ({ type }) => {
   const router = useRouter()
   const { data: session } = useSession()
+
+  useEffect(() => {})
 
   const [submitting, setSubmitting] = useState(false)
   const [post, setPost] = useState({
