@@ -3,7 +3,8 @@
 import Form from '@components/Form'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import { FC, useState } from 'react'
+import { useState } from 'react'
+import axios from 'axios'
 
 const CreatePrompt = ({}) => {
   const router = useRouter()
@@ -15,22 +16,31 @@ const CreatePrompt = ({}) => {
     tag: '',
   })
 
+  if (!session?.user) {
+    return router.push('/')
+  }
+
   const createPrompt = async (e) => {
     e.preventDefault()
     setSubmitting(true)
 
     try {
-      const res = await fetch('/api/prompt/new', {
+      // const res = await axios.post('/api/prompt/new', {
+      //   userId: session?.user.id,
+      //   prompt: post.prompt,
+      //   tag: post.tag,
+      // })
+
+      const response = await fetch('/api/prompt/new', {
         method: 'POST',
         body: JSON.stringify({
           prompt: post.prompt,
-          // useId: session?.user.id,
-          useId: 'vwev4548CcCE56ca4vaev4aa',
+          userId: session?.user.id,
           tag: post.tag,
         }),
       })
 
-      if (res.ok) {
+      if (response.ok) {
         router.push('/')
       }
     } catch (error) {

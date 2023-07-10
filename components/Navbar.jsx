@@ -7,7 +7,6 @@ import { signIn, signOut, useSession, getProviders } from 'next-auth/react'
 
 const Navbar = () => {
   const { data: session } = useSession()
-  // const session = true
 
   const [providers, setProviders] = useState()
   const [toggleDropdown, setToggleDropdown] = useState(false)
@@ -75,8 +74,7 @@ const Navbar = () => {
         {session ? (
           <div className='flex cursor-pointer'>
             <Image
-              // src={session?.user.image}
-              src={''}
+              src={session?.user.image}
               className='rounded-[15px]'
               alt='profile pic'
               width={37}
