@@ -1,8 +1,10 @@
+'use client'
+
 import Feed from '@components/Feed'
-// import { useSession } from 'next-auth/react'
+import { useSession } from 'next-auth/react'
 
 const Home = () => {
-  // const { data: session } = useSession()
+  const { data: session } = useSession()
 
   return (
     <section className='w-full flex-center flex-col'>
@@ -16,7 +18,7 @@ const Home = () => {
         discover, create and share creative prompts
       </p>
 
-      <Feed />
+      {session && <Feed />}
     </section>
   )
 }
