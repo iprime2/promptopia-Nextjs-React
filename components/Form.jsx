@@ -10,8 +10,15 @@ import { useState } from 'react'
 const Form = ({ type }) => {
   const router = useRouter()
   const { data: session } = useSession()
+  const [isMounted, setIsMounted] = useState(false)
 
-  useEffect(() => {})
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
+  if (!isMounted) {
+    return null
+  }
 
   const [submitting, setSubmitting] = useState(false)
   const [post, setPost] = useState({
