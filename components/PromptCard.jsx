@@ -4,7 +4,6 @@ import { useState } from 'react'
 import Image from 'next/image'
 import { useSession } from 'next-auth/react'
 import { usePathname, useRouter } from 'next/navigation'
-import Avatar from '../images/avatar.png'
 
 const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
   const { data: session } = useSession()
@@ -24,7 +23,6 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
     navigator.clipboard.writeText(post.prompt)
     setTimeout(() => setCopied(false), 3000)
   }
-
   return (
     <div className='prompt_card'>
       <div className='flex justify-between items-start gap-5'>
@@ -32,8 +30,8 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
           className='flex-1 flex justify-start items-center gap-3 cursor-pointer'
           onClick={handleProfileClick}
         >
-          <img
-            src={session?.user.image}
+          <Image
+            src={post.creator.image}
             alt='user_image'
             width={40}
             height={40}
@@ -41,9 +39,11 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
           />
 
           <div className='flex flex-col'>
-            <h3 className='font-satoshi font-semibold text-gray-900'></h3>
+            <h3 className='font-satoshi font-semibold text-gray-900'>
+              {post.creator.username}
+            </h3>
             <p className='font-inter text-sm text-gray-500'>
-              {session?.user.email}
+              {post.creator.email}
             </p>
           </div>
         </div>
@@ -70,11 +70,11 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
         #{post.tag}
       </p>
 
-      {session?.user.id === post.creator && pathName === '/profile' && (
+      {session?.user.id === post.creator._id && pathName === '/profile' && (
         <div className='mt-5 flex-center gap-4 border-t border-gray-100 pt-3'>
           <p
             className='font-inter text-sm green_gradient cursor-pointer'
-            onClick={handleEdit}
+            onClick={() => handleEdit(post._id.toString())}
           >
             Edit
           </p>

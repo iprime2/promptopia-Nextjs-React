@@ -26,8 +26,8 @@ const EditPrompt = ({}) => {
       })
     }
 
-    if (prompt) getPromptDetails()
-  }, [prompt])
+    if (promptId) getPromptDetails()
+  }, [promptId])
 
   const editPrompt = async (e) => {
     e.preventDefault()
