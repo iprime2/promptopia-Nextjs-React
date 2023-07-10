@@ -25,12 +25,6 @@ const CreatePrompt = ({}) => {
     setSubmitting(true)
 
     try {
-      // const res = await axios.post('/api/prompt/new', {
-      //   userId: session?.user.id,
-      //   prompt: post.prompt,
-      //   tag: post.tag,
-      // })
-
       const response = await fetch('/api/prompt/new', {
         method: 'POST',
         body: JSON.stringify({
