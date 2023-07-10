@@ -8,9 +8,15 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
 const Form = ({ type }) => {
+  const [isMounted, setIsMounted] = useState(false)
+
   const router = useRouter()
   const { data: session } = useSession()
-  const [isMounted, setIsMounted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [post, setPost] = useState({
+    prompt: '',
+    tag: '',
+  })
 
   useEffect(() => {
     setIsMounted(true)
@@ -19,12 +25,6 @@ const Form = ({ type }) => {
   if (!isMounted) {
     return null
   }
-
-  const [submitting, setSubmitting] = useState(false)
-  const [post, setPost] = useState({
-    prompt: '',
-    tag: '',
-  })
 
   if (!session?.user) {
     return router.push('/')
