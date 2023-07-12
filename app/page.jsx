@@ -2,6 +2,7 @@
 
 import Feed from '@components/Feed'
 import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 
 const Home = () => {
     const router = useRouter()
