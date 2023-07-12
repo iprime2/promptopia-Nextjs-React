@@ -29,8 +29,9 @@ const Feed = () => {
   const fetchPosts = async () => {
     const response = await fetch('/api/prompt')
     const data = await response.json()
-
+    
     setAllPosts(data)
+    console.log("Post Updted" + data)
   }
 
   useEffect(() => {
