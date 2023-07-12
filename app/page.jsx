@@ -1,10 +1,14 @@
 'use client'
 
 import Feed from '@components/Feed'
-
-export const revalidate = 0
+import { useRouter } from 'next/navigation'
 
 const Home = () => {
+    const router = useRouter()
+
+    useEffect(() => {
+    router.refresh()
+  }, [])
   return (
     <section className='w-full flex-center flex-col'>
       <h1 className='head_text text-center'>
