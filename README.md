@@ -26,7 +26,7 @@
 ### Cloning the repository
 
 ```shell
-git clone https://github.com/iprime2/AI-SAAS
+git clone https://github.com/iprime2/promptopia-Nextjs-React
 ```
 
 ### Install packages
